@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+This is The Home Page 
+{%endblock%}
+
+
+{% block main %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand ms-2" href="{{ url_for('post.index') }}">  {{ current_user.username }}</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('post.create_form') }}">Create</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('user.logout') }}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+{% for p in posts %}
+<div class="card mt-3 ms-3 me-3 mb-3" style="width: 20rem; display:inline-block;">
+     <img class="card-img-top" src="{{ p.image_url }}" alt="{{ p.name }}" style=" height: 30rem;">
+          
+    <div class="card-body">
+      <h5 class="card-title">{{p.name}}</h5>
+      <!-- <h5 class="card-title"><label class="fs-bold">id: </label>{{p.id}}</h5> -->
+      <p class="card-text">{{p.description}}</p>
+      <a href="{{p.show_url}}" class="btn btn-dark">Show Details</a>
+      <a href="{{url_for ('post.edit_form',id=p.id)}}" class="btn btn-dark">Edit</a>
+      <a href="{{p.delete_url}}" class="btn btn-dark ">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}

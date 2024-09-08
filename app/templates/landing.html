@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <h1 class="text-center">Welcome to Our Application</h1>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body text-center">
+                <h5 class="card-title">New User?</h5>
+                <p class="card-text">Create an account to get started.</p>
+                <a href="{{ url_for('user.register') }}" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+        <div class="card ms-3" style="width: 18rem;">
+            <div class="card-body text-center">
+                <h5 class="card-title">Already a Member?</h5>
+                <p class="card-text">Log in to your account.</p>
+                <a href="{{ url_for('user.login') }}" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
